@@ -26,7 +26,6 @@ export class AppComponent implements OnInit {
 
   updateLeds() {
     this.ledService.updateLeds(this.leds).subscribe((res) => {
-      console.log(res);
     });
   }
 }

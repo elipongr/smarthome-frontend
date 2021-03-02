@@ -8,7 +8,7 @@
           <nz-card [nzTitle]="led.name" class="inner-box">
             <nz-switch (click)="updateLeds()" [(ngModel)]="led.state"></nz-switch>
             <nz-divider></nz-divider>
-            <nz-slider (ngModelChange)="updateLeds()" [nzMarks]="marks" nzStep="25" nzMin="0" nzMax="250"
+            <nz-slider (ngModelChange)="updateLeds()" [nzMarks]="marks" nzStep="5" nzMin="0" nzMax="250"
                        [(ngModel)]="led.brightness"
                        [nzDisabled]="!led.state"></nz-slider>
           </nz-card>
