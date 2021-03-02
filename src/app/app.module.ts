@@ -9,6 +9,7 @@ import { NZ_I18N } from 'ng-zorro-antd/i18n';
 import { de_DE } from 'ng-zorro-antd/i18n';
 import { registerLocaleData } from '@angular/common';
 import de from '@angular/common/locales/de';
+import {NzCardModule, NzDividerModule, NzGridModule, NzLayoutModule, NzSliderModule, NzSpinModule, NzSwitchModule} from 'ng-zorro-antd';
 
 registerLocaleData(de);
 
@@ -20,7 +21,14 @@ registerLocaleData(de);
     BrowserModule,
     FormsModule,
     HttpClientModule,
-    BrowserAnimationsModule
+    BrowserAnimationsModule,
+    NzLayoutModule,
+    NzCardModule,
+    NzGridModule,
+    NzSpinModule,
+    NzSwitchModule,
+    NzSliderModule,
+    NzDividerModule
   ],
   providers: [{ provide: NZ_I18N, useValue: de_DE }],
   bootstrap: [AppComponent]

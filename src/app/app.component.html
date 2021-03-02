@@ -2,9 +2,22 @@
 <nz-layout>
   <nz-content>
     <div class="inner-content">
-      <nz-card class="inner-content">
 
-      </nz-card>
+      <div nz-row [nzGutter]="16" *ngIf="leds.length > 0; else loading">
+        <div nz-col class="gutter-row" nzSpan="4" *ngFor="let led of leds">
+          <nz-card [nzTitle]="led.name" class="inner-box">
+            <nz-switch (click)="updateLeds()" [(ngModel)]="led.state"></nz-switch>
+            <nz-divider></nz-divider>
+            <nz-slider (ngModelChange)="updateLeds()" [nzMarks]="marks" nzStep="25" nzMin="0" nzMax="250"
+                       [(ngModel)]="led.brightness"
+                       [nzDisabled]="!led.state"></nz-slider>
+          </nz-card>
+        </div>
+      </div>
+      <ng-template #loading>
+        <nz-spin nzSimple class="spinner"></nz-spin>
+      </ng-template>
+
     </div>
   </nz-content>
 </nz-layout>
