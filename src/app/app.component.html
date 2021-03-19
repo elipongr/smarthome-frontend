@@ -1,4 +1,4 @@
-<h1 class="header">Elizar & Astrit Smarthome</h1>
+<h1 class="header">Elizar & Astrit Smarthome proof of concept</h1>
 <nz-layout>
   <nz-content>
     <div class="inner-content">
@@ -10,7 +10,7 @@
             <nz-divider></nz-divider>
             <nz-slider (ngModelChange)="updateLeds()" [nzMarks]="marks" nzStep="5" nzMin="0" nzMax="250"
                        [(ngModel)]="led.brightness"
-                       [nzDisabled]="!led.state || !led.brightness"></nz-slider>
+                       [nzDisabled]="!led.state || led.brightness === undefined"></nz-slider>
           </nz-card>
         </div>
       </div>
