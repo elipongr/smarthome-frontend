@@ -1,5 +1,6 @@
 import {Component, OnInit} from '@angular/core';
 import {LedService} from './led.service';
+import {timer} from 'rxjs';
 
 @Component({
   selector: 'app-root',
@@ -11,6 +12,11 @@ export class AppComponent implements OnInit {
   marks = {
     0: '0',
     250: '250',
+  };
+
+  marksSensor = {
+    0: '0',
+    300: '300',
   };
 
 
@@ -25,7 +31,6 @@ export class AppComponent implements OnInit {
   }
 
   updateLeds() {
-    this.ledService.updateLeds(this.leds).subscribe((res) => {
-    });
+    this.ledService.updateLeds(this.leds).subscribe();
   }
 }

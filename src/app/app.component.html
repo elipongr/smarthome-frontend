@@ -3,14 +3,35 @@
   <nz-content>
     <div class="inner-content">
 
-      <div nz-row [nzGutter]="16" *ngIf="leds.length > 0; else loading">
-        <div nz-col class="gutter-row" nzSpan="4" *ngFor="let led of leds">
+      <div nzJustify="center" nz-row [nzGutter]="16" *ngIf="leds.length > 0; else loading">
+        <div nz-col class="gutter-row" nzSpan="3" *ngFor="let led of leds">
           <nz-card [nzTitle]="led.name" class="inner-box">
-            <nz-switch (click)="updateLeds()" [(ngModel)]="led.state"></nz-switch>
-            <nz-divider></nz-divider>
-            <nz-slider (ngModelChange)="updateLeds()" [nzMarks]="marks" nzStep="5" nzMin="0" nzMax="250"
-                       [(ngModel)]="led.brightness"
-                       [nzDisabled]="!led.state || led.brightness === undefined"></nz-slider>
+            <div *ngIf="led.state !== undefined">
+              <div nz-row>
+                <p>Status: &nbsp; </p>
+                <nz-switch (click)="updateLeds()" [nzDisabled]="led.listenToSensor" [(ngModel)]="led.state"></nz-switch>
+              </div>
+              <div *ngIf="led.brightness !== undefined">
+                <p>Brightness:</p>
+                <nz-slider (ngModelChange)="updateLeds()" [nzMarks]="marks"
+                           nzStep="5" nzMin="0" nzMax="250"
+                           [(ngModel)]="led.brightness"
+                           [nzDisabled]="!led.state"></nz-slider>
+              </div>
+            </div>
+            <div *ngIf="led.listenToSensor !== undefined || led.threshold  !== undefined">
+              <nz-divider></nz-divider>
+              <div nz-row>
+                <p>Sensor: &nbsp; </p>
+                <nz-switch (click)="updateLeds()" [nzDisabled]="led.state"
+                           [(ngModel)]="led.listenToSensor"></nz-switch>
+              </div>
+              <p>Threshold:</p>
+              <nz-slider *ngIf="led.threshold !== undefined" (ngModelChange)="updateLeds()" [nzMarks]="marksSensor"
+                         nzStep="5" nzMin="0" nzMax="300"
+                         [(ngModel)]="led.threshold"
+                         [nzDisabled]="!led.listenToSensor"></nz-slider>
+            </div>
           </nz-card>
         </div>
       </div>
